@@ -1,0 +1,51 @@
+{
+    "$id": "location.schema.json",
+    "definitions": {
+        "location": {
+            "type": "object",
+            "title": "location schema",
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "title": "The identifier of the location."
+                },
+                "label": {
+                    "type": "string",
+                    "title": "The label of the location."
+                },
+                "fileType": {
+                    "type": "string",
+                    "title": "The type of the file."
+                },
+                "fileName": {
+                    "type": "string",
+                    "title": "The name of the file."
+                },
+                "position": {
+                    "type": "integer",
+                    "title": "Position of the location."
+                },
+                "file": {
+                    "title": "The binary file"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "date-time representing the moment the location has been created"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "date-time representing the moment the location information were updated"
+                }
+            },
+            "required": [
+                "label",
+                "fileType",
+                "fileName",
+                "file"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

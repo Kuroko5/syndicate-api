@@ -1,0 +1,100 @@
+{
+  "$id": "counter.schema.json",
+  "definitions": {
+    "counter": {
+      "type": "object",
+      "title": "counter schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "The identifier of the counter"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the counter"
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the counter"
+        },
+        "value": {
+          "type": "string",
+          "title": "The value of the counter",
+          "examples": [
+            "1500 min"
+          ]
+        },
+        "initOn": {
+          "type": "boolean",
+          "title": "Enable to accept incoming traffic from device",
+          "enum": [
+            true,
+            false
+          ]
+        },
+        "type": {
+          "type": "string",
+          "title": "The type of the counter",
+          "enum": [
+            "variable",
+            "custom"
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "title": "The unit of the value",
+          "enum": [
+            "day",
+            "hour",
+            "minute",
+            "all"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The reference date to start the counter"
+        },
+        "variable": {
+          "type": "object",
+          "title": "The variable schema",
+          "description": "Some properties of the variable object.",
+          "properties": {
+            "vId": {
+              "type": "string",
+              "title": "The id of the variable"
+            },
+            "format": {
+              "type": "string",
+              "title": "The variable format e.g: integer, float, bool",
+              "enum": [
+                "int",
+                "float",
+                "bool"
+              ]
+            }
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The date-time representing the moment the device was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The date-time representing the moment the device was updated"
+        }
+      },
+      "required": [
+        "label",
+        "description",
+        "type",
+        "unit",
+        "variable",
+        "date"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

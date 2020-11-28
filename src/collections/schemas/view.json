@@ -1,0 +1,69 @@
+{
+  "$id": "view.schema.json",
+  "definitions": {
+    "view": {
+      "type": "object",
+      "title": "view schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "The identifier of the view"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the view"
+        },
+        "position": {
+          "type": "integer",
+          "title": "The position of the view"
+        },
+        "cards": {
+          "type": "array",
+          "title": "The list of cards",
+          "items": {
+            "type": "object",
+            "title": "A card",
+            "properties": {
+              "label": {
+                "type": "string",
+                "title": "The title of the card"
+              },
+              "position": {
+                "type": "integer",
+                "title": "The posiiton of the card"
+              },
+              "type": {
+                "type": "string",
+                "title": "The type of the variables of the card"
+              },
+              "variables": {
+              "type": "array",
+              "title": "The list of variables of the card",
+                "items": {
+                  "type": "object",
+                  "title": "The variable",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "title": "The id of the variable"
+                    },
+                    "description": {
+                      "type": "string",
+                      "title": "Description of the variable/condition"
+                    },
+                    "position": {
+                      "type": "integer",
+                      "title": "Position of the variable/condition"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["_id", "label", "cards"],
+      "additionalProperties": false
+    }
+  }
+}

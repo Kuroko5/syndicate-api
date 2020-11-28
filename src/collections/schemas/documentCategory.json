@@ -1,0 +1,33 @@
+{
+  "$id": "documentCategory.schema.json",
+  "definitions": {
+    "documentCategory": {
+      "type": "object",
+      "title": "documentCategory schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "command identifier"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "title": "Specify a default folder",
+          "default": false,
+          "examples": [false]
+        }, 
+        "label": {
+          "type": "string",
+          "title": "The label of the category",
+          "examples": ["Document1"]
+        },
+        "language": {
+          "type": "string",
+          "title": "The language of the label",
+          "examples": ["fr-fr"]
+        }
+      },
+      "required": ["id", "label", "isDefault"],
+      "additionalProperties": false
+    }
+  }
+}

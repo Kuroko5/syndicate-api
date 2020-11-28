@@ -1,0 +1,59 @@
+{
+  "$id": "skill.schema.json",
+  "definitions": {
+    "skill": {
+      "type": "string",
+      "title": "automate controlling skills",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "command identifier"
+        },
+        "descr": {
+          "type": "string",
+          "title": "description about the skill"
+        },
+        "dId": {
+          "type": "string",
+          "title": "device id"
+        },
+        "actions": {
+          "type": "array",
+          "title": "list of actions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "title": "action method : Read, Write",
+                "enum": ["R", "W"]
+              },
+              "vId": {
+                "type": "string",
+                "title": "variable name - identifier"
+              },
+              "val": {
+                "type": "string",
+                "title": "value to put in the variable"
+              }
+            },
+            "required": ["method", "vId"],
+            "additionalProperties": false
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the skill was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the skill was updated"
+        }
+      },
+      "required": ["id", "actions", "dId"],
+      "additionalProperties": false
+    }
+  }
+}

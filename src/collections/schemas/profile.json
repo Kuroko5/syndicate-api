@@ -1,0 +1,108 @@
+{
+  "$id": "profile.schema.json",
+  "definitions": {
+    "profile": {
+      "type": "object",
+      "title": "profile schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "The identifier of the profile"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the profile"
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the profile"
+        },
+        "permissions": {
+          "type": "array",
+          "title": "The list of permissions",
+          "items": {
+            "type": "object",
+            "title": "The permission schema",
+            "description": "All properties of the permission object.",
+            "default": {},
+            "properties": {
+              "id": {
+                "$id": "#/properties/dimensions/properties/id",
+                "type": "integer",
+                "title": "The id of permission",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "5f1959a97fb6c529c8bf3541"
+                ]
+              },
+              "label": {
+                "$id": "#/properties/dimensions/properties/label",
+                "type": "integer",
+                "title": "The label of permission",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "PROFILE_CREATE"
+                ]
+              },
+              "category": {
+                "$id": "#/properties/dimensions/properties/label",
+                "type": "integer",
+                "title": "The category of permission",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "Profile"
+                ]
+              },
+              "code": {
+                "$id": "#/properties/dimensions/properties/label",
+                "type": "integer",
+                "title": "The code of permission",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "PROFILE_CREATE"
+                ]
+              }
+            }
+          }
+        },
+        "views": {
+          "type": "array",
+          "title": "The list of views",
+          "items": {
+            "type": "object",
+            "title": "The view schema",
+            "description": "All properties of the view object.",
+            "default": {},
+            "properties": {
+              "id": {
+                "$id": "#/properties/dimensions/properties/id",
+                "type": "integer",
+                "title": "The id of view",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "5f1959a97fb6c529c8bf3541"
+                ]
+              },
+              "label": {
+                "$id": "#/properties/dimensions/properties/label",
+                "type": "integer",
+                "title": "The label of view",
+                "description": "An explanation about the purpose of this instance.",
+                "examples": [
+                  "VUE_PERSO"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "_id",
+        "label",
+        "description",
+        "permissions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

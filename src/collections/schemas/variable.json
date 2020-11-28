@@ -1,0 +1,95 @@
+{
+  "$id": "variable.schema.json",
+  "definitions": {
+    "variable": {
+      "type": "object",
+      "title": "variables dictionary schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "db id"
+        },
+        "vId": {
+          "type": "string",
+          "title": "Identifier of the variable"
+        },
+        "deviceId": {
+          "type": "string",
+          "title": "Identifier of the device"
+        },
+        "memorySlot": {
+          "type": "string",
+          "title": "The memory description"
+        },
+        "unit": {
+          "type": "string",
+          "title": "Variable unit"
+        },
+        "enable": {
+          "type": "boolean",
+          "title": "The state of the variable."
+        },
+        "isVisible": {
+          "type": "boolean",
+          "title": "Show or hide variable."
+        },
+        "descr": {
+          "type": "string",
+          "title": "variable description"
+        },
+        "format": {
+          "type": "string",
+          "title": "the variable format e.g: integer, float, bool",
+          "enum": [
+            "int",
+            "float",
+            "bool"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "title": "Variable type e.g : default, alert or machine",
+          "enum": [
+            "alert",
+            "default",
+            "machine"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "title": "The category of the variable"
+        },
+        "advice": {
+          "type": "string",
+          "title": "Some advices about variable semantics"
+        },
+        "location": {
+          "type": "string",
+          "title": "The location of the variable"
+        },
+        "createdAt": {
+          "type": "string",
+          "title": "date-time representing the moment this variable was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment this variable was modified"
+        }
+      },
+      "required": [
+        "vId",
+        "deviceId",
+        "memorySlot",
+        "unit",
+        "enable",
+        "isVisible",
+        "descr",
+        "format",
+        "type",
+        "category"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

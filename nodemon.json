@@ -1,0 +1,12 @@
+{
+    "watch": [
+      "api/**/*"
+    ],
+    "ext": "js",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "delay": 10,
+    "exec": "node server.js"
+  }

@@ -1,0 +1,97 @@
+{
+  "$id": "station.schema.json",
+  "definitions": {
+    "station": {
+      "type": "object",
+      "title": "station schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "command identifier"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the category"
+        },
+        "ip": {
+          "type": "string",
+          "title": "The ip address of the station"
+        },
+        "position": {
+          "type": "integer",
+          "title": "The position of the station"
+        },
+        "state": {
+          "type": "boolean",
+          "title": "The state of the station",
+          "enum": [
+            true,
+            false
+          ]
+        },
+        "vComm": {
+          "type": ["object", "null"],
+          "title": "the schema for varaibale communication",
+          "properties": {
+            "vId": {
+              "type": "string",
+              "title": "identifier of the variable communication"
+            },
+            "desc": {
+              "type": "string",
+              "title": "Description of the variable"
+            },
+            "value": {
+              "type": "boolean",
+              "title": "Value of the variable"
+            }
+          }
+        },
+        "vMachine": {
+          "type": ["object", "null"],
+          "title": "the schema for varaibale material",
+          "properties": {
+            "vId": {
+              "type": "string",
+              "title": "identifier of the variable material"
+            },
+            "desc": {
+              "type": "string",
+              "title": "Description of the variable"
+            },
+            "value": {
+              "type": "boolean",
+              "title": "Value of the variable"
+            }
+          }
+        },
+        "variables": {
+          "type": "array",
+          "title": "list of variables",
+          "items": {
+            "type": "object",
+            "properties": {
+              "vId": {
+                "type": "string",
+                "title": "variable name - identifier"
+              },
+              "desc": {
+                "type": "string",
+                "title": "Description of the variable"
+              },
+              "value": {
+                "type": "boolean",
+                "title": "value to put in the variable"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "label",
+        "ip"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$id": "report.schema.json",
+  "definitions": {
+    "report": {
+      "type": "object",
+      "title": "report schema",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "The title of the Schema"
+        },
+        "reportType": {
+          "type": "object",
+          "title": "The reportType schema",
+          "description": "All properties of the reportType object.",
+          "default": {},
+          "properties": {
+              "id": {
+                  "type": "string",
+                  "title": "The id schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "5f1959a97fb6c529c8bf3541"
+                  ]
+              },
+              "label": {
+                  "type": "string",
+                  "title": "The label schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "Schéma technique"
+                  ]
+              }
+          }
+        },
+        "operator": {
+          "type": "string",
+          "title": "The Operator Schema",
+          "examples": ["name.surname"]
+        },
+        "description": {
+          "type": "string",
+          "title": "The description of the Schema"
+        }
+      },
+      "required": [
+        "name",
+        "reportType",
+        "operator",
+        "description"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

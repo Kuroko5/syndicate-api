@@ -1,0 +1,28 @@
+{
+    "$id": "documentType.schema.json",
+    "definitions": {
+      "documentType": {
+        "type": "object",
+        "title": "documentType schema",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "Identifier of the documentType"
+          },
+          "label": {
+            "type": "string",
+            "title": "The label of the documentType",
+            "examples": ["Manual"]
+          },
+          "language": {
+            "type": "string",
+            "title": "The language of the label",
+            "examples": ["fr-fr"]
+          }
+        },
+        "required": ["id", "label"],
+        "additionalProperties": false
+      }
+    }
+  }
+  

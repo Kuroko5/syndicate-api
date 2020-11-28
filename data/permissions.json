@@ -1,0 +1,66 @@
+{"_id":ObjectId("5f7f8119a3a31554bec4c2b4"),"label":"Accéder au tableau de bord","code":"DASHBOARD","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f8134a3a31554bec4c2dc"),"label":"Voir la carte des défauts","code":"DASHBOARD_DEFAULTS","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f814da3a31554bec4c2f4"),"label":"Voir la carte des alarmes","code":"DASHBOARD_ALERTS","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f8163a3a31554bec4c30c"),"label":"Voir la carte des alarmes","code":"DASHBOARD_ALERTS","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f817aa3a31554bec4c336"),"label":"Voir la carte des conditions","code":"DASHBOARD_CONDITIONS","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f8190a3a31554bec4c350"),"label":"Voir la carte des variables machines","code":"DASHBOARD_MACHINES","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f81aaa3a31554bec4c36b"),"label":"Voir la carte des rapports","code":"DASHBOARD_REPORTS","category":"Tableau de bord"}
+{"_id":ObjectId("5f7f81c0a3a31554bec4c38b"),"label":"Accéder aux défauts et alarmes","code":"ALERTS","category":"Défauts et alarmes"}
+{"_id":ObjectId("5f7f81dca3a31554bec4c3a9"),"label":"Voir l'onglet des défauts","code":"ALERTS_DEFAULTS","category":"Défauts et alarmes"}
+{"_id":ObjectId("5f7f81efa3a31554bec4c3c9"),"label":"Voir l'onglet des alarmes","code":"ALERTS_ALERTS","category":"Défauts et alarmes"}
+{"_id":ObjectId("5f7f8202a3a31554bec4c3e5"),"label":"Modifier les conseils","code":"ALERTS_ADVICE_UPDATE","category":"Défauts et alarmes"}
+{"_id":ObjectId("5f7f821aa3a31554bec4c3f7"),"label":"Voir l'onglet des historiques","code":"ALERTS_HISTORY","category":"Défauts et alarmes"}
+{"_id":ObjectId("5f7f8230a3a31554bec4c41d"),"label":"Accéder aux conditions d'opérations","code":"CONDITIONS","category":"Conditions d'opérations"}
+{"_id":ObjectId("5f7f8245a3a31554bec4c437"),"label":"Accéder aux variables machines","code":"VARIABLES","category":"Variables machines"}
+{"_id":ObjectId("5f7f825ba3a31554bec4c457"),"label":"Voir l'onglet des variables en cours","code":"VARIABLES_INPROGRESS","category":"Variables machines"}
+{"_id":ObjectId("5f7f8270a3a31554bec4c46e"),"label":"Voir l'onglet des historiques","code":"VARIABLES_HISTORY","category":"Variables machines"}
+{"_id":ObjectId("5f7f8283a3a31554bec4c48c"),"label":"Accéder aux documents","code":"DOCUMENTS","category":"Documents"}
+{"_id":ObjectId("5f7f8298a3a31554bec4c4aa"),"label":"Créer un document","code":"DOCUMENTS_CREATE","category":"Documents"}
+{"_id":ObjectId("5f7f82aca3a31554bec4c4d0"),"label":"Modifier un document","code":"DOCUMENTS_UPDATE","category":"Documents"}
+{"_id":ObjectId("5f7f82c4a3a31554bec4c504"),"label":"Supprimer un document","code":"DOCUMENTS_DELETE","category":"Documents"}
+{"_id":ObjectId("5f7f82daa3a31554bec4c52a"),"label":"Créer un dossier","code":"DOCUMENTS_CATEGORIES_CREATE","category":"Documents"}
+{"_id":ObjectId("5f7f82f1a3a31554bec4c550"),"label":"Modifier un dossier","code":"DOCUMENTS_CATEGORIES_UPDATE","category":"Documents"}
+{"_id":ObjectId("5f7f8307a3a31554bec4c572"),"label":"Supprimer un dossier","code":"DOCUMENTS_CATEGORIES_DELETE","category":"Documents"}
+{"_id":ObjectId("5f7f831aa3a31554bec4c58b"),"label":"Accéder aux rapports","code":"REPORTS","category":"Rapports"}
+{"_id":ObjectId("5f7f8330a3a31554bec4c5b5"),"label":"Créer un rapport","code":"REPORTS_CREATE","category":"Rapports"}
+{"_id":ObjectId("5f7f8350a3a31554bec4c5d8"),"label":"Modifier un rapport","code":"REPORTS_UPDATE","category":"Rapports"}
+{"_id":ObjectId("5f7f836ca3a31554bec4c60b"),"label":"Supprimer un rapport","code":"REPORTS_DELETE","category":"Rapports"}
+{"_id":ObjectId("5f7f8381a3a31554bec4c62d"),"label":"Accéder au mode dégradé","code":"DEGRADED","category":"Mode dégradé"}
+{"_id":ObjectId("5f7f8393a3a31554bec4c645"),"label":"Accéder aux vues personnalisées","code":"VIEWS","category":"Vues personnalisées"}
+{"_id":ObjectId("5f7f83a9a3a31554bec4c663"),"label":"Accéder à l'architecture matérielle","code":"HARDWARE","category":"Architecture matérielle"}
+{"_id":ObjectId("5f7f83bda3a31554bec4c687"),"label":"Créer une station","code":"HARDWARE_CREATE","category":"Architecture matérielle"}
+{"_id":ObjectId("5f7f83d6a3a31554bec4c6b9"),"label":"Modifier une station","code":"HARDWARE_UPDATE","category":"Architecture matérielle"}
+{"_id":ObjectId("5f7f83eaa3a31554bec4c6e1"),"label":"Supprimer une station","code":"HARDWARE_DELETE","category":"Architecture matérielle"}
+{"_id":ObjectId("5f7f8405a3a31554bec4c701"),"label":"Accéder à l'administration","code":"ADMIN","category":"Administration"}
+{"_id":ObjectId("5f7f841ba3a31554bec4c722"),"label":"Voir l'onglet des utilisateurs","code":"ADMIN_USERS","category":"Administration"}
+{"_id":ObjectId("5f7f843da3a31554bec4c76e"),"label":"Créer un utilisateur","code":"ADMIN_USERS_CREATE","category":"Administration"}
+{"_id":ObjectId("5f7f8451a3a31554bec4c784"),"label":"Modifier un utilisateur","code":"ADMIN_USERS_UPDATE","category":"Administration"}
+{"_id":ObjectId("5f7f8467a3a31554bec4c79c"),"label":"Supprimer un utilisateur","code":"ADMIN_USERS_DELETE","category":"Administration"}
+{"_id":ObjectId("5f7f847aa3a31554bec4c7a0"),"label":"Voir l'onglet des profils","code":"ADMIN_PROFILES","category":"Administration"}
+{"_id":ObjectId("5f7f848ea3a31554bec4c7a9"),"label":"Créer un profil","code":"ADMIN_PROFILES_CREATE","category":"Administration"}
+{"_id":ObjectId("5f7f84a2a3a31554bec4c7b0"),"label":"Modifier un profil","code":"ADMIN_PROFILES_UPDATE","category":"Administration"}
+{"_id":ObjectId("5f7f84b5a3a31554bec4c7b5"),"label":"Supprimer un profil","code":"ADMIN_PROFILES_DELETE","category":"Administration"}
+{"_id":ObjectId("5f7f84cea3a31554bec4c7c1"),"label":"Voir l'onglet des vues personnalisées","code":"ADMIN_VIEWS","category":"Administration"}
+{"_id":ObjectId("5f7f84dfa3a31554bec4c7c6"),"label":"Créer une vue personalisée","code":"ADMIN_VIEWS_CREATE","category":"Administration"}
+{"_id":ObjectId("5f7f84f1a3a31554bec4c7ca"),"label":"Modifier une vue personalisée","code":"ADMIN_VIEWS_UPDATE","category":"Administration"}
+{"_id":ObjectId("5f7f8508a3a31554bec4c7d4"),"label":"Supprimer une vue personalisée","code":"ADMIN_VIEWS_DELETE","category":"Administration"}
+{"_id":ObjectId("5f7f8521a3a31554bec4c7db"),"label":"Ajouter une carte au dashboard","code":"ADMIN_CARDS_CREATE","category":"Administration"}
+{"_id":ObjectId("5f7f853aa3a31554bec4c7f4"),"label":"Mettre à jour une carte au dashboard","code":"ADMIN_CARDS_UPDATE","category":"Administration"}
+{"_id":ObjectId("5f802226603728d3829d8b84"),"label":"Supprimer une carte du dashboard","code":"ADMIN_CARDS_DELETE","category":"Administration"}
+{"_id":ObjectId("5f8d5b9f6f400a48e18fe140"),"label":"Voir l'onglet du tableau de bord","code":"ADMIN_DASHBOARD","category":"Administration"}
+{"_id":ObjectId("5f8d9ce5aee14629f83851f6"),"label":"Voir l'onglet des plugins","code":"CONFIG_DEVICES","category":"Configuration"}
+{"_id":ObjectId("5f8d9ce5aee14629f83851f7"),"label":"Ajouter un plugin","code":"CONFIG_DEVICES_CREATE","category":"Configuration"}
+{"_id":ObjectId("5f8d9ce5aee14629f83851f8"),"label":"Modifier un plugin","code":"CONFIG_DEVICES_UPDATE","category":"Configuration"}
+{"_id":ObjectId("5f8d9ce5aee14629f83851f9"),"label":"Supprimer un plugin","code":"CONFIG_DEVICES_DELETE","category":"Configuration"}
+{"_id":ObjectId("5f8d9ce5aee14629f83851fa"),"label":"Voir l'onglet des variables","code":"CONFIG_VARIABLES","category":"Configuration"}
+{"_id":ObjectId("5f8d9d54aee14629f83851fb"),"label":"Accéder à la page de configuration","code":"CONFIG","category":"Configuration"}
+{"_id":ObjectId("5f903ab1cda1d5000a0d0057"),"label":"Create variables","code":"CONFIG_VARIABLES_CREATE","category":"Configuration"}
+{"_id":ObjectId("5f903ab1cda1d5000a0d005a"),"label":"Update des variables","code":"CONFIG_VARIABLES_UPDATE","category":"Configuration"}
+{"_id":ObjectId("5f903ab1cda1d5000a0d005d"),"label":"Delete des variables","code":"CONFIG_VARIABLES_DELETE","category":"Configuration"}
+{"_id":ObjectId("5fa41e91c911f25cd05961e7"),"label":"page compteur","code":"CONFIG_COUNTERS","category":"Configuration"}
+{"_id":ObjectId("5fa41e91c911f25cd05961ea"),"label":"update des compteur","code":"CONFIG_COUNTERS_UPDATE","category":"Configuration"}
+{"_id":ObjectId("5fa41e91c911f25cd05961ed"),"label":"Creation des compteur","code":"CONFIG_COUNTERS_CREATE","category":"Configuration"}
+{"_id":ObjectId("5fa41e91c911f25cd05961f0"),"label":"Delete des compteur","code":"CONFIG_COUNTERS_DELETE","category":"Configuration"}
+{"_id":ObjectId("5fb4edffc911f25cd05bf5ef"),"label":"reset des compteur","code":"CONFIG_COUNTERS_RESET","category":"Configuration"}
+{"_id":ObjectId("5fb64360c911f25cd05c3ee9"),"label":"Export des variables","code":"CONFIG_VARIABLES_EXPORT","category":"Configuration"}
+{"_id":ObjectId("5fb64360c911f25cd05c3eec"),"label":"Import des variables","code":"CONFIG_VARIABLES_IMPORT","category":"Configuration"}

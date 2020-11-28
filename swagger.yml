@@ -1,0 +1,4916 @@
+################################################################################
+################################################################################
+##                     FULL BIM API    -    TUNNEL FACTORY              ##
+################################################################################
+################################################################################
+# Remark :                        Swagger 2.0 to ensure compliance with API Connect
+swagger:                          '2.0'
+info:
+  title:                          'TUNNEL FACTORY API'
+  description:                    'The API aims are to provide a control on **Tunnel Factory**'
+  version:                        1.0.0
+host:                             'F.Q.D.N_of_the_host'
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath:                         '/api/v0'
+schemes:
+  - https
+#######################################################################################
+
+tags:
+  - name:                         'Permissions'
+    description:                  'Permissions management APIs'
+  - name:                         'Samples'
+    description:                  'Samples management APIs'
+  - name:                         'Variables'
+    description:                  'Variables management APIs'
+  - name:                         'Conditions'
+    description:                  'Conditions management APIs'
+  - name:                         'ReportTypes'
+    description:                  'ReportTypes management APIs'
+  - name:                         'Reports'
+    description:                  'Reports management APIs'
+  - name:                         'Documents'
+    description:                  'Documents management APIs'
+  - name:                         'DocumentsCategories'
+    description:                  'Documents categories management APIs'
+  - name:                         'DocumentsTypes'
+    description:                  'DocumentsTypes management APIs'
+  - name:                         'Skills'
+    description:                  'Skills management APIs'
+  - name:                         'Stations'
+    description:                  'Stations management APIs'
+  - name:                         'Profiles'
+    description:                  'Profiles management APIs'
+  - name:                         'Users'
+    description:                  'Users management APIs'
+  - name:                         'Views'
+    description:                  'Views management APIs'
+  - name:                         'Cards'
+    description:                  'Cards management APIs'
+  - name:                         'Devices'
+    description:                  'Devices management APIs'
+  - name:                         'Counters'
+    description:                  'Counters management APIs'
+
+  #####################################################################################
+paths:
+  '/permissions':
+    get:
+      tags:
+        - Permissions
+      summary:                   'Get all permissions.'
+
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Créer un dossier"
+                    code:
+                      type:           string
+                      example:        "DOCUMENTS_CATEGORIES_CREATE"
+                    category:
+                      type:           string
+                      example:        "Documents"
+                    
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Permissions not found"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #####################################################################################
+  '/samples/all':
+    get:
+      tags:
+        - Samples
+      summary:                   'Get all samples regarding type with pagination'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   search
+          type:                   string
+          
+        - in:                     query
+          name:                   category
+          type:                   string
+          
+        - in:                     query
+          name:                   type
+          type:                   string
+
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  totalCount:
+                    type:             integer
+                    example:          1
+                  count:
+                    type:             integer
+                    example:          1 
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        vId:
+                          type:       string
+                          example:    "ALA_TENSIOACTIF_BAS"
+                        d:
+                          type:       string
+                          example:    "2019-12-13T15:17:05.172Z"
+                        val:
+                          type:       boolean
+                          example:    true
+                        category:
+                          type:       string
+                          example:    "pression"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #--------------------------------------------------------------------------------#
+  '/samples/defaults':
+    get:
+      tags:
+        - Samples
+      summary:                    'Get currents defaults samples'
+      parameters:
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+          
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 object
+                properties:
+                    count:
+                      type:           string
+                      example:          6
+                    result:
+                      type:             array
+                      items:
+                        type:             object
+                        properties:
+                          _id:
+                            type:         string
+                            example:      "DEF_ATR"
+                          vId:
+                            type:       string
+                            example:    "DEF_ATR"
+                          d:
+                            type:       string
+                            example:    "2019-12-13T15:17:03.244Z"
+                          val:
+                            type:       boolean
+                            example:    true
+                          c:
+                            type:       string
+                            example:    "pression"
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  
+  #---------------------------------------------------------------------------------#
+  '/samples/alerts':
+    get:
+      tags:
+        - Samples
+      summary:                    'Get currents alerts samples'
+      parameters:
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 object
+                properties:
+                    count:
+                      type:           string
+                      example:          6
+                    result:
+                      type:             array
+                      items:
+                        type:             object
+                        properties:
+                          _id:
+                            type:         string
+                            example:      "AL_ATR"
+                          vId:
+                            type:       string
+                            example:    "AL_ATR"
+                          d:
+                            type:       string
+                            example:    "2019-12-13T15:17:03.244Z"
+                          val:
+                            type:       boolean
+                            example:    true
+                          c:
+                            type:       string
+                            example:    "pression"
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  
+  #---------------------------------------------------------------------------------#
+  '/samples/history':
+    get:
+      tags:
+        - Samples
+      summary:                    'Get history for all samples with pagination, sort, search, filter on category.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   search
+          type:                   string
+          
+        - in:                     query
+          name:                   category
+          type:                   string
+          
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 object
+                properties:
+                    count:
+                      type:           string
+                      example:          6
+                    result:
+                      type:             array
+                      items:
+                        type:             object
+                        properties:
+                          vId:
+                            type:       string
+                            example:    "DEF_ATR"
+                          startDate:
+                            type:       string
+                            example:    "2019-12-13T15:17:03.244Z"
+                          endDate:
+                            type:       string
+                            example:    "2019-12-13T15:17:03.244Z"
+                        
+                          type:
+                            type:       string
+                            example:    default
+                          category:
+                            type:       string
+                            example:    "pression"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#   
+  '/samples/:id':
+    get:
+      tags:
+        - Samples
+      summary:                    'Get description for one sample regarding vId.'
+      parameters:
+        - in:                           query
+          name:                         vId
+          type:                         string
+
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:                   object
+                properties:
+                    vId:
+                      type:             string
+                      example:         "DEF_ATR"
+                    d:
+                      type:             string
+                      example:          "2019-12-13T15:17:03.244Z"
+                    c:
+                      type:             string
+                      example:          "pression"
+                    descr:
+                      type:             string
+                      example:          "Défaut pression basse accu prise voussoir"
+                    advice:
+                      type:             string
+                      example:          "conseil"
+                    location:
+                      type:             string
+                      example:          "Non renseigné"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+                
+  ####################################################################################
+  '/variables':
+    post:
+      tags:
+        - Variables
+      summary:                      'Create a new variable.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - vId
+              - deviceId
+              - memorySlot
+              - unit
+              - enable
+              - isVisible
+              - descr
+              - format
+              - type
+              - category
+              - advice
+              - location
+            properties:
+              vId:
+                type:               string
+                example:            "AL_ERT_142"
+              deviceId:
+                type:               string
+                example:            "PLUGIN1"
+              memorySlot:
+                type:               string
+                example:            1
+              unit:
+                type:               string
+                example:            "air"
+              enable:
+                type:               boolean
+                example:            true
+              isVisible:
+                type:               boolean
+                example:            true
+              descr:
+                type:               string
+                example:            "alarme niveau 1"
+              format:
+                type:               string
+                example:            "int"
+              type:
+                type:               string
+                example:            "machine"
+              category:
+                type:               string
+                example:            "Air respirable"
+              advice:
+                type:               string
+                example:            "conseil"
+              location:
+                type:               string
+                example:            "Train ar"
+          
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "A new variable has been created"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#                   
+  '/variables/all':
+    get:
+      tags:
+        - Variables
+      summary:                   'Get all variables with pagination, sort, search, filter on category.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   search
+          type:                   string
+          
+        - in:                     query
+          name:                   category
+          type:                   string
+          
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        vId:
+                          type:       string
+                          example:    "ALA_TENSIOACTIF_BAS"
+                        tbmrn:
+                          type:         string
+                          example:      "tbmrn::maquetteDemo1::tbmDemo1::automateDemo1::%DB1.80.0"
+                        val:
+                          type:         boolean
+                          example:      true
+                        d:
+                          type:         string
+                          example:      "2019-12-13T15:17:05.172Z"
+                        t:
+                          type:         string
+                          example:      "machine" 
+                        c:
+                          type:       string
+                          example:    "Erecteur de voussoirs"
+                        unit:
+                          type:       string
+                          example:    "l/kg" 
+                        dId:
+                          type:       string
+                          example:    "bessacPlugin"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/variables/:id':
+    get:
+      tags:
+        - Variables
+      summary:                    'Get description for one variable. regarding vId.'
+      parameters:
+        - in:                           query
+          name:                         vId
+          type:                         string
+
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:                   object
+                properties:
+                    vId:
+                      type:             string
+                      example:          "DEF_ATR"
+                    val:
+                      type:             number
+                      example:          230.49703979492188
+                    d:
+                      type:             string
+                      example:          "2019-12-13T15:17:03.244Z"
+                    c:
+                      type:             string
+                      example:          "pression"
+                    unit:
+                      type:             string
+                      example:          "l/kg"
+                    descr:
+                      type:             string
+                      example:          "description"
+                    advice:
+                      type:             string
+                      example:          "conseil"
+                    location:
+                      type:             string
+                      example:          "Non renseigné"
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    put:
+      tags:
+        - Variables
+      summary:                      'Update a variable'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - vId
+              - deviceId
+              - memorySlot
+              - unit
+              - enable
+              - isVisible
+              - descr
+              - format
+              - type
+              - category
+              - advice
+              - location
+            properties:
+              vId:
+                type:               string
+                example:            "AL_ERT_143"
+              deviceId:
+                type:               string
+                example:            "PLUGIN2"
+              memorySlot:
+                type:               string
+                example:            1
+              unit:
+                type:               string
+                example:            "air"
+              enable:
+                type:               boolean
+                example:            true
+              isVisible:
+                type:               boolean
+                example:            true
+              descr:
+                type:               string
+                example:            "alarme niveau 2"
+              format:
+                type:               string
+                example:            "int"
+              type:
+                type:               string
+                example:            "machine"
+              category:
+                type:               string
+                example:            "Air respirable"
+              advice:
+                type:               string
+                example:            "conseil"
+              location:
+                type:               string
+                example:            "Train ar"
+          
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "This variable has been updated"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    delete:
+      tags:
+        - Variables
+      summary:                      'Delete a variable'
+      parameters:
+        - in:                       query
+          name:                     id
+          type:                     string
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Variable deleted"
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            404
+              message:
+                type:               string
+                example:            "The variable could not be deleted"               
+  #----------------------------------------------------------------------------------#
+  '/variables/categories/all':
+    get:
+      tags:
+        - Variables
+      summary:                    'Get all categories of variables.'
+  
+      responses:
+        '200':  
+          description:                 Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 array
+                items:
+                  type:               string
+                  example:          ["Air respirable"]
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #--------------------------------------------------------------------------------#
+  '/variables/history':
+    post:
+      tags:
+        - Variables
+      summary:                      'Get all values for eachs variables'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - array
+              - dates
+             
+            properties:
+              array:
+                type:               array
+                items:
+                  type:               object
+                properties:
+                    vId:
+                      type: string
+                      example: "DEF-CAPT"
+              dates:
+                type:           object
+                properties:
+                  min:
+                    type:       string
+                    example:    "2019-12-13T08:48:01.008"
+                  max:
+                    type:       string
+                    example:    "2019-12-13T10:48:01.008Z"
+
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+             result:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    name:
+                      type:           string
+                      example:        "ALA_TENSIOACTIF_BAS"
+                    series:
+                      type:           array
+                      items:
+                        type:         object
+                        properties:
+                          value:
+                            type:     string
+                            example:  true
+                          name:
+                            type:     string
+                            example: "2019-12-13T09:52:57"
+                        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/variables/:id/advice':
+    put:
+      tags:
+        - Variables
+      summary:                        'Edit advice for one variable. regarding vId.'
+      parameters:
+        - in:                         query
+          name:                       vId
+          type:                       string
+        - in:                         body
+          name:                       body
+          schema:
+            type:                     object
+            required:
+              - advice
+            properties:
+              advice:
+                type:                 string
+                example:              "Attention ! Si ce mode est activé..."
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              message:
+                type:                 string
+                example:              "Advice updated"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#----------------------------------------------------------------------------------#
+  '/variables/upload':
+    post:
+      tags:
+        - Variables
+      summary:               'Upload a csv file'
+      consumes: 
+         - multipart/form-data 
+      parameters:
+         - name: file
+           in: formData
+           description: The uploaded file data
+           required: true
+           type: file
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:                   object
+                properties:
+                    countInserted:
+                      type:             number
+                      example:          23
+                    countUpdated:
+                      type:             number
+                      example:          0
+                    totalCount:
+                      type:             integer
+                      example:          23
+                    message:
+                      type:             string
+                      example:          "Import success"
+                   
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#----------------------------------------------------------------------------------#
+  '/variables/card/:id':
+    get:
+      tags:
+        - Variables
+      summary:                        'Get card machine with all values.'
+      parameters:
+        - in:                         query
+          name:                       vId
+          type:                       string
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  _id:
+                    type:             string
+                    example:          "5d711d8b2a21ab1627619ad9"
+                  label:
+                    type:             string
+                    example:          "Card machine"
+                  type:
+                    type:             string
+                    example:          "machine"
+                  column:
+                    type:             integer
+                    example:          1
+                  variables:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        vId:
+                          type:       string
+                          example:    "ALA_PE0310_LUB"
+                        descr:
+                          type:       string
+                          example:    "Alarme colmatage filtre lubrification roulement"
+                        label:
+                          type:         string
+                          example:      "Filtre lubrification"
+                        result:
+                          type:              object
+                          properties:
+                            label:
+                              type:             string
+                              example:          "En Fonctionnement"
+                            value:
+                              type:             string
+                              example:          "true"
+                            color:
+                              type:             string
+                              example:          "green"
+                            format:
+                              type:             string
+                              example:          "bool"
+                            unit:
+                              type:             string
+                              example:          "TOR"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+ #--------------------------------------------------------------------------------#                   
+  '/variables/devices':
+    get:
+      tags:
+        - Variables
+      summary:                    'Get all devices regarding variables.'
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 array
+                items:
+                  type:               string
+                  example:          ["PLUGIN 1"]
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#----------------------------------------------------------------------------------#
+  '/variables/configuration':
+    get:
+      tags:
+        - Variables
+      summary:                   'Get all variables with pagination, sort, search, filter on category.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   search
+          type:                   string
+
+        - in:                     query
+          name:                   equipmentId
+          type:                   string
+        
+        - in:                    query
+          name:                   machineId
+          type:                   string
+          
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        vId:
+                          type:       string
+                          example:    "ALA_TENSIOACTIF_BAS"
+                        device:
+                          type:              object
+                          properties:
+                            -id:
+                              type:             string
+                              example:          "BESAC_PLUGIN"
+                            constructionId:
+                              type:             string
+                              example:          "true"
+                            machineId:
+                              type:             string
+                              example:          "machineId"
+                            equipmentId:
+                              type:             string
+                              example:          "equipmentId"
+                            enable:
+                              type:             boolean
+                              example:          true
+                            ip:
+                              type:             string
+                              example:          "192.168.1.1"
+                            rack:
+                              type:             integer
+                              example:          1
+                            slot:
+                              type:             integer
+                              example:          1
+                            period:
+                              type:             integer
+                              example:          1
+                        memorySlot:
+                          type:         string
+                          example:      "%DB1.80.0"
+                        unit:
+                          type:         string
+                          example:      "TOR"
+                        enable:
+                          type:         boolean
+                          example:      true 
+                        isVisible:
+                          type:       boolean
+                          example:    true
+                        descr:
+                          type:       string
+                          example:    "Défaut pression basse accu prise voussoir" 
+                        format:
+                          type:       string
+                          example:    "int"
+                        type:
+                          type:       string
+                          example:    "machine"
+                        category:
+                          type:       string
+                          example:    "capteur"
+                        location:
+                          type:       string
+                          example:    "train ar"
+                        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query" 
+  #------------------------------------------------------------------------------------#
+  '/variables/export':
+    get:
+      tags:
+        - Variables
+      summary:                      'Get variables in csv file'
+      produces:
+        - text/csv
+      responses:
+        200:
+          description: OK
+          examples:
+            text/csv: >
+              vId;deviceId;memorySlot;unit;descr;advice;format;type;category;location;enable;isVisible
+              ALA_AE;bessacPlugin;%DB100.0.0;TOR;Alarme pression basse chambre AE;;bool;alert;Graissage joint jupe;;true;true
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            404
+              message:
+                type:               string
+                example:            "The variable could not be deleted"
+  ####################################################################################
+  '/conditions':
+    get:
+      tags:
+        - Conditions
+      summary:                    'Get all or currents conditions regarding limit'
+      parameters:
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+          
+      responses:
+        '200':  
+          description:                      Success
+          schema:
+            properties:
+              data:
+                type:                         array
+                items:
+                  type:                     object
+                  properties:
+                    rule:
+                      type:                 string
+                      example:              "CPS_DEM_PRINCIPAL"
+                    descr:
+                      type:                 string
+                      example:              "Condition de démarrage TBM"
+                    result:
+                      type:                 boolean
+                      example:              false
+                    stack:
+                      type:                 array
+                      items:
+                        type:               object
+                        properties:
+                          condition:
+                            type:           string
+                            example:        "STATUS"
+                          result:
+                            type:           boolean
+                            example:        false
+                          stack:
+                            type:           array
+                            items:
+                              type:         object
+                              properties:
+                                condition:
+                                  type:     string
+                                  example:  "STATUS"
+                                descr:
+                                  type:     string
+                                  example:  "CPS électrique validée"
+                                result:
+                                  type:     boolean
+                                  example:  false
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+
+  ####################################################################################
+  '/reportTypes':
+    post:
+      tags:
+        - ReportTypes
+      summary:                      'Create a new reportType.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+            properties:
+              label:
+                type:               string
+                example:            "New reportType"
+                
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New reportType created"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/reportTypes/:id/update':
+    put:
+      tags:
+        - ReportTypes
+      summary:                      'Update a reportType.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+            properties:
+              label:
+                type:               string
+                example:            "New reportType"
+                
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New report updated"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/reportTypes/:id/delete':
+    delete:
+      tags:
+        - ReportTypes
+      summary:                      'Delete a reportType.'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "ReportType has been deleted"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/reportTypes/':
+    get:
+      tags:
+        - ReportTypes
+      summary:                   'Get all reportTypes with pagination, sort, search, filter on type.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   type
+          type:                   string
+        
+        - in:                    query
+          name:                  search
+          type:                  string
+
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        label:
+                          type:       string
+                          example:    "Manuel"
+                        language:
+                          type:         string
+                          example:      "fr-fr"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/reports/new':
+    post:
+      tags:
+        - Reports
+      summary:                      'Create a new report.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - name
+              - type
+              - category
+              - operator
+              - description
+            properties:
+              name:
+                type:               string
+                example:            "New report"
+              type:
+                type:               string
+                example:            "Manuel"
+              operator:
+                type:               string
+                example:            "nicolas.duhamel"  
+              category:
+                type:               string
+                example:            "Observation"
+              description:
+                type:               string
+                example:            "sfqfsvsrsszvrzgerge"
+                
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New report created"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/reports/all':
+    get:
+      tags:
+        - Reports
+      summary:                   'Get all reports with pagination, sort, search, filter on type.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   type
+          type:                   string
+          
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        name:
+                          type:       string
+                          example:    "SKILL_BESSAC_PLUGIN"
+                        operator:
+                          type:         string
+                          example:      "name.surname"
+                        updatedAt:
+                          type:         string
+                          example:      "2019-12-13T15:17:05.172Z"
+                        type:
+                          type:         string
+                          example:      "Mode Dégradé" 
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/reports/update':
+    put:
+      tags:
+        - Reports
+      summary:                    'Update one report by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - name
+              - type
+              - operator
+              - description
+            properties:
+              name:
+                type:                   string
+                example:                "Update report"
+              type:
+                type:                   string
+                example:                "Manuel"
+              operator:
+                type:                   string
+                example:                "nicolas.duhamel"  
+              category:
+                type:                   string
+                example:                "Observation"
+              description:
+                type:                   string
+                example:                "sfqfsvsrsszvrzgerge"
+
+      responses:
+        '201':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'New report updated.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #---------------------------------------------------------------------------------#
+  '/reports/:id':
+    get:
+      tags:
+        - Reports
+      summary:                    'Get description for one report by Id.'
+      parameters:
+        - in:                           query
+          name:                         vId
+          type:                         string
+
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:                   object
+                properties:
+                    _id:
+                      type:             string
+                      example:          "5df3655042bdf40011a27437"
+                    name:
+                      type:             string
+                      example:          "DEF"
+                    type:
+                      type:             string
+                      example:          "Mode dégradé"
+                    operator:
+                      type:             string
+                      example:          "name.surname"
+                    description:
+                      type:             string
+                      example:          "fzrfzfaedazxazdaez"
+                    createdAt:
+                      type:             string
+                      example:          "2019-12-13T15:17:05.172Z"
+                    updatedAt:
+                      type:             string
+                      example:          "2019-12-13T15:17:05.172Z"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #---------------------------------------------------------------------------------#
+  '/reports/delete':
+    delete:
+      tags:
+        - Reports
+      summary:                        'Delete one report by Id.'
+      parameters:
+        - in:                           query
+          name:                         vId
+          type:                         string
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "OK report deleted"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/reports/config':
+    get:
+      tags:
+        - Reports
+      summary:                   'Get all config reports with pagination, sort, search'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+        - in:                     query
+          name:                   column
+          type:                   string
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        label:
+                          type:       string
+                          example:    "Debut réél"
+                        type:
+                          type:       string
+                          example:    "variable"
+                          enum:       ["variable", "text", "info"]
+                        value:
+                          type:       string
+                          example:    "11/05/2020"
+                        vId:
+                          type:       string
+                          example:    "ANGLE_ERECTEUR"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              message:
+                type:                 string
+                example:              "failed"
+  ####################################################################################
+  '/documents/upload':
+    post:
+      tags:
+        - Documents
+      summary:                      'Adding new document.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - title
+              - type
+              - operator
+              - fileName
+            properties:
+              title:
+                type:               string
+                example:            "document1"
+              type:
+                type:               string
+                example:            "Document technique fournisseur"
+              operator:
+                type:               string
+                example:            "nicolas.duhamel"  
+              fileName:
+                type:               string
+                example:            "test12345.jpeg"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New document added"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #-----------------------------------------------------------------------------------#
+  '/documents/all':
+    get:
+      tags:
+        - Documents
+      summary:                   'Get all documents with pagination, sort, search, filter on type.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   type
+          type:                   string
+
+        - in:                     query
+          name:                   category
+          type:                   string
+
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        title:
+                          type:       string
+                          example:    "SKILL_BESSAC_PLUGIN"
+                        operator:
+                          type:         string
+                          example:      "name.surname"
+                        type:
+                          type:         string
+                          example:      "Document technique fournisseur"
+                        createdAt:
+                          type:         string
+                          example:      "2019-12-13T15:17:05.172Z"
+                        updatedAt:
+                          type:         string
+                          example:      "2019-12-13T15:17:05.172Z"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/documents/update':
+    put:
+      tags:
+        - Documents
+      summary:                    'Update one documents by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - title
+              - type
+              - operator
+              - description
+            properties:
+              title:
+                type:                   string
+                example:                "Update document"
+              operator:
+                type:                   string
+                example:                "nane.surname"
+              type:
+                type:                   string
+                example:                "Observation"
+              fileName:
+                type:                   string
+                example:                "update.jpg"
+
+      responses:
+        '201':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'New document updated.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #----------------------------------------------------------------------------------#
+  '/documents/delete':
+    delete:
+      tags:
+        - Documents
+      summary:                    'Delete one documents by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'The file is deleted.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+                    
+  #---------------------------------------------------------------------------------#     
+  '/documents/:id':
+    get:
+      tags:
+        - Documents
+      summary:                    'Get one document by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:                   object
+                properties:
+                    _id:
+                      type:             string
+                      example:          "5df3655042bdf40011a27437"
+                    title:
+                      type:             string
+                      example:          "Document1"
+                    type:
+                      type:             string
+                      example:          "Schéma"
+                    operator:
+                      type:             string
+                      example:          "name.surname"
+                    fileName:
+                      type:             string
+                      example:          "b.jpeg"
+                    createdAt:
+                      type:             string
+                      example:          "2019-12-13T15:17:05.172Z"
+                    updatedAt:
+                      type:             string
+                      example:          "2019-12-13T15:17:05.172Z"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #---------------------------------------------------------------------------------#     
+  '/documents/file/:id':
+    get:
+      tags:
+        - Documents
+      summary:                    'Get one file by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              result:
+                type:                   array
+                example:                [iVBORw0WV9AAAAAXNSR0IArs4c6QAAAARnQU1BAACx]
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "Not found"
+  #---------------------------------------------------------------------------------#     
+  '/documents/categories':
+    get:
+      tags:
+        - DocumentsCategories
+      summary:                        'Get all categories'
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Document1"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found"
+    post:
+      tags:
+        - DocumentsCategories
+      summary:                        'Create a Document Category, for use it like a folder'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+            properties:
+              label:
+                type:               string
+                example:            "Dossier 1"
+              isDefault:
+                type:               boolean
+                description:        "Specify a default folder"
+                example:            "true"
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Document addes with success"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found"
+  #---------------------------------------------------------------------------------#     
+  '/documents/categories/:id':
+    put:
+      tags:
+        - Documents
+      summary:                        'Update a category'
+      parameters:
+        - in:                         query
+          name:                       id
+          type:                       string
+        - in:                         body
+          name:                       body
+          schema:
+            type:                     object
+            required:
+              - label
+            properties:
+              label:
+                type:                 string
+                example:              "Nom du document"
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Document1"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found"
+  ######################################################################################
+  '/documentsTypes':
+    get:
+      tags:
+        - DocumentsTypes
+      summary:                        'Get all documentsTypes'
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Documentation"
+                    language:
+                      type:           string
+                      example:        "Fr-fr"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found"
+    post:
+      tags:
+        - DocumentsTypes
+      summary:                      'Create a new documentType.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+              - language
+            properties:
+              label:
+                type:               string
+                example:            "Documentation"
+              language:
+                type:               string
+                example:            "fr-fr"
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Schéma technique"
+                    language:
+                      type:           string
+                      example:        "Fr-fr"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found" 
+  #-------------------------------------------------------------------------------------------------#
+  '/documentsTypes/:id/update':
+    put:
+      tags:
+        - DocumentsTypes
+      summary:                        'Update a documentType'
+      parameters:
+        - in:                         query
+          name:                       id
+          type:                       string
+        - in:                         body
+          name:                       body
+          schema:
+            type:                     object
+            required:
+              - label
+            properties:
+              label:
+                type:                 string
+                example:              "Nom du type de document"
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              data:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "5f1fe10da479dc493c283c36"
+                    label:
+                      type:           string
+                      example:        "Schéma technique"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Not found"
+  #----------------------------------------------------------------------------------#
+  '/documentsTypes/:id/delete':
+    delete:
+      tags:
+        - Documents
+      summary:                    'Delete one documentType by id'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'This documentType has been deleted.'
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  ######################################################################################
+  '/skills':
+    get:
+      tags:
+        - Skills
+      summary:                      'Get all skills.'
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+             result:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        "SKILL_01"
+                    descr:
+                      type:           string
+                      example:        "Le skill de test" 
+                    dId:
+                      type:           string
+                      example:        "a_alpha01"  
+                    consequences:
+                      type:           string
+                      example:        "Risque d'explosion"
+                    actions:
+                      type:           array
+                      items:
+                        type:         object
+                        properties:
+                          method:
+                            type:     string
+                            example:  "w"
+                          vId:
+                            type:     string
+                            example: "ALA_AIR_7BAR"
+                          val:
+                            type:     boolean
+                            example:  true
+                    startedAt:
+                      type:           string
+                      example:        "2019-12-30T15:45:51.093Z"
+                    endedAt:
+                      type:           string
+                      example:        "2019-12-30T15:45:51.093Z"
+                    active:
+                      type:           boolean
+                      example:        true
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/skills/start':
+    post:
+      tags:
+        - Skills
+      summary:                      'Start one skill.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - idSkill
+            properties:
+              idSkill:
+                type:               string
+                example:            "SKILL_BESSAC_PLUGIN"
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Success"
+                  task:
+                    type:             object
+                    properties:
+                      id:             
+                        type:           string
+                        example:          "podU-FokNx"
+                      operator:             
+                        type:           string
+                        example:        "name.surname"
+                      skill:
+                        type:             object
+                        properties:
+                            -id:            
+                              type:           string
+                              example:          "SKILL_BESSAC_PLUGIN"
+                            descr:             
+                              type:           string
+                              example:        "Le skill de test"
+                            dId:             
+                              type:           string
+                              example:        "bessacPlugin"
+                            actions:
+                              type:                 array
+                              items:
+                                type:               object
+                                properties:
+                                  method:
+                                    type:           string
+                                    example:        "W"
+                                  vId:
+                                    type:           string
+                                    example:        "ALA_AIR_7BAR"
+                                  val:
+                                    type:           boolean
+                                    example:        true
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/skills/stop':
+    post:
+      tags:
+        - Skills
+      summary:                      'Stop one skill.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - idSkill
+            properties:
+              idSkill:
+                type:               string
+                example:            "SKILL_BESSAC_PLUGIN"
+                
+      responses:
+        '200':  
+          description:                  Success
+          schema:
+            properties:
+              data:
+                type:              object
+                properties:
+                  message:
+                    type:             string
+                    example:          "Success"
+                  task:
+                    type:             object
+                    properties:
+                      id:             
+                        type:           string
+                        example:          "podU-FokNx"
+                      operator:             
+                        type:           string
+                        example:        "name.surname"
+                      skill:
+                        type:             object
+                        properties:
+                            -id:            
+                              type:           string
+                              example:          "SKILL_BESSAC_PLUGIN"
+                            descr:             
+                              type:           string
+                              example:        "Le skill de test"
+                            dId:             
+                              type:           string
+                              example:        "bessacPlugin"
+                            actions:
+                              type:                 array
+                              items:
+                                type:               object
+                                properties:
+                                  method:
+                                    type:           string
+                                    example:        "W"
+                                  vId:
+                                    type:           string
+                                    example:        "ALA_AIR_7BAR"
+                                  val:
+                                    type:           boolean
+                                    example:        true
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "Skill SKILL_BESSAC_PLUGIN is not active. aborted action."
+  #######################################################################################
+  '/stations':
+    post:
+      tags:
+        - Stations
+      summary:                          'Create station.'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - ip
+            properties:
+              label:
+                type:                   string
+                example:                "Station 1"
+              ip:
+                type:                   string
+                example:                "192.168.1.1"
+              vComm:
+                type:                   object
+                properties:
+                  vId:
+                    type:               string
+                    example:            "ALA_AE"
+                  desc:
+                    type:               string
+                    example:            "Alarme pression basse chambre AE"
+              vMachine:
+                type:                   object
+                properties:
+                  vId:
+                    type:               string
+                    example:            "ALA_AE"
+                  desc:
+                    type:               string
+                    example:            "Alarme pression basse chambre AE"
+              variables:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    vId:
+                      type:             string
+                      example:          "ALA_AE"
+                    desc:
+                      type:             string
+                      example:          "Alarme pression basse chambre AE"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New station created"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    get:
+      tags:
+        - Stations
+      summary:                          'Retrieve all Stations.'
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:               array
+                items:
+                  type:             object
+                example:            [
+                  {
+                      "_id": "5f45180a703b29783157da5b",
+                      "label": "STATION 237",
+                      "ip": "192.168.1.1",
+                      "position": 1,
+                      "vComm": {
+                          "vId": "Clock_0.625Hz",
+                          "desc": "description",
+                          "value": true
+                      },
+                      "vMachine": {
+                          "vId": "Clock_2Hz",
+                          "desc": "description",
+                          "value": true
+                      },
+                      "variables": [
+                          {
+                              "vId": "AU_AV_R8_D",
+                              "desc": "description",
+                              "value": true
+                          },
+                          {
+                              "vId": "AU_CENTRE_D_R3",
+                              "desc": "description",
+                              "value": false
+                          }
+                      ],
+                      "state": true,
+                      "createdAt": "2020-08-25T13:54:18.385Z",
+                      "updatedAt": "2020-08-25T13:54:18.385Z"
+                  },
+                  {
+                      "_id": "5f451819703b29783157da5c",
+                      "label": "STATION 1",
+                      "ip": "192.168.1.1",
+                      "position": 2,
+                      "vComm": {
+                          "vId": "Clock_0.625Hz",
+                          "desc": "description",
+                          "value": true
+                      },
+                      "vMachine": {
+                          "vId": "Clock_2Hz",
+                          "desc": "description",
+                          "value": true
+                      },
+                      "variables": [
+                          {
+                              "vId": "AU_AV_R8_D",
+                              "desc": "description",
+                              "value": true
+                          },
+                          {
+                              "vId": "AU_CENTRE_D_R3",
+                              "desc": "description",
+                              "value": false
+                          }
+                      ],
+                      "state": true,
+                      "createdAt": "2020-08-25T13:54:33.530Z",
+                      "updatedAt": "2020-08-25T13:54:33.530Z"
+                  }
+              ]
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/stations/:id':
+    put:
+      tags:
+        - Stations
+      summary:                          'Put a station.'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - ip
+            properties:
+              label:
+                type:                   string
+                example:                "Station 123"
+              ip:
+                type:                   string
+                example:                "192.168.1.1"
+              vComm:
+                type:                   object
+                properties:
+                  vId:
+                    type:               string
+                    example:            "ALA_AE"
+                  desc:
+                    type:               string
+                    example:            "Alarme pression basse chambre AE"
+              vMachine:
+                type:                   object
+                properties:
+                  vId:
+                    type:               string
+                    example:            "ALA_AE"
+                  desc:
+                    type:               string
+                    example:            "Alarme pression basse chambre AE"
+              variables:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    vId:
+                      type:             string
+                      example:          "ALA_AE"
+                    desc:
+                      type:             string
+                      example:          "Alarme pression basse chambre AE"
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Station updated"
+        '404':
+          description:                  Query error
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Not Found"
+  #------------------------------------------------------------------------------------#
+  '/stations/ping':
+    post:
+      tags:
+        - Stations
+      summary:                      'Ping a station.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - ip
+            properties:
+              ip:
+                type:               string
+                example:            "192.168.1.1"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Ping successful"
+              state:
+                type:               boolean
+                example:            true
+              time:
+                type:               integer
+                example:            5
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              message:
+                type:               string
+                example:            "Format of IP address incorrect"
+  #------------------------------------------------------------------------------------#
+  '/stations/:id/delete':
+    delete:
+      tags:
+        - Stations
+      summary:                    'Delete one station'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'This station has been deleted.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/stations/position':
+    put:
+      tags:
+        - Stations
+      summary:                      'Change position of stations'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - stations
+            properties:
+              stations:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f44df442df7880c3c03345b"
+      responses:
+        '200':
+          description:              Success
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:               string
+                example:            'Position updated success'
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            400
+              message:
+                type:               string
+                example:            "A error occured"
+  #------------------------------------------------------------------------------------#
+  '/profiles':
+    post:
+      tags:
+        - Profiles
+      summary:                          'Create a profile.'
+      parameters:
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - description
+              - permissions
+            properties:
+              label:
+                type:                   string
+                example:                "NOM"
+              description:
+                type:                   string
+                example:                "description du profil"
+              permissions:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "creation de profil"
+                    code:
+                      type:             string
+                      example:          "PROFILE_CREATE"
+                    category:
+                      type:             string
+                      example:          "profile"
+              views:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "vue perso"
+                    code:
+                      type:             string
+                      example:          "VUE_PERSO_1"
+              isDefault:
+                type: boolean
+                example: true
+                default: false
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Profile created"
+        '404':
+          description:                  Query error
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Not Found"
+  #------------------------------------------------------------------------------------#
+  '/profiles/:id':
+    put:
+      tags:
+        - Profiles
+      summary:                          'Update a profile.'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - description
+              - permissions
+            properties:
+              label:
+                type:                   string
+                example:                "NOM"
+              description:
+                type:                   string
+                example:                "description du profil"
+              permissions:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "creation de profil"
+                    code:
+                      type:             string
+                      example:          "PROFILE_CREATE"
+                    category:
+                      type:             string
+                      example:          "profile"
+              views:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "vue perso"
+                    code:
+                      type:             string
+                      example:          "VUE_PERSO_1"
+              isDefault:
+                type: boolean
+                example: true
+                default: false
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Profile updated"
+        '404':
+          description:                  Query error
+          schema:
+            properties:
+              message:
+                type:                   string
+                example:                "Not Found"
+  #------------------------------------------------------------------------------------#
+  '/profiles/:id/delete':
+    delete:
+      tags:
+        - Profiles
+      summary:                    'Delete one profile'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'This profile has been deleted.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "Can not delete this profile."
+  ####################################################################################
+  '/users':
+    post:
+      tags:
+        - Users
+      summary:                      'Adding new user.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - username
+              - password
+              - profiles
+            properties:
+              username:
+                type:               string
+                example:            "exemple.exemple"
+              password:
+                type:               string
+                example:            "password"
+              profiles:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    id:
+                      type:             string
+                      example:          "5f1b0fce67e14a2d6cd61985"
+                    label:
+                      type:             string
+                      example:          "ADMIN"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New user added"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+ #------------------------------------------------------------------------------------#
+  '/users/right':
+    get:
+      tags:
+        - Users
+      summary:                      "Get user's rights."
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              username:
+                type:               string
+                example:            "test.test"
+              permissions:
+                type:               array
+                items:
+                  type:             string
+                  example:          "DASHBOARD"
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              message:
+                type:               string
+                example:            "User not found !"
+ #------------------------------------------------------------------------------------#
+  '/users/:id':
+    put:
+      tags:
+        - Users
+      summary:                      'Update a user.'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - username
+              - password
+              - profiles
+            properties:
+              username:
+                type:               string
+                example:            "exemple.exemple"
+              password:
+                type:               string
+                example:            "password"
+              profiles:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    id:
+                      type:             string
+                      example:          "5f1b0fce67e14a2d6cd61985"
+                    label:
+                      type:             string
+                      example:          "ADMIN"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "User updated"
+
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:             integer
+                example:          400
+              message:
+                type:             string
+                example:          "Not found"
+
+ #------------------------------------------------------------------------------------#
+  '/users/login':
+    post:
+      tags:
+        - Users
+      summary:                      'Connection to the api'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - username
+              - password
+            properties:
+              username:
+                type:               string
+                example:            "name.surname"
+              password:
+                type:               string
+                example:            "password"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              ussername:
+                type:               string
+                example:            "name.surname"
+              token:
+                type:               string
+                example:            "zazzddfedfezdzdzdtrtythyyn43433432324353453345T54fgsfe"
+
+        '400':
+          description:              Server Error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            400
+              message:
+                type:               string
+                example:            'Login failed'
+#------------------------------------------------------------------------------------#
+  '/users/:id/delete':
+    delete:
+      tags:
+        - Users
+      summary:                    'Delete one user'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+      responses:
+        '200':  
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              data:
+                type:                 string
+                example:              'This user has been deleted.'
+        
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#------------------------------------------------------------------------------------#
+  '/users/views/position':
+    put:
+      tags:
+        - Users
+      summary:                      'Change position of views for user'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - views
+            properties:
+              views:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f69e88dc27d91f9aa18d52c"
+      responses:
+        '200':
+          description:              Success
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:               string
+                example:            'Position updated success'
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            400
+              message:
+                type:               string
+                example:            "A error occured"
+#------------------------------------------------------------------------------------#
+  '/users/views':
+    get:
+      tags:
+        - Users
+      summary:                                'Get views of the current user'
+      responses:
+        '200':
+          description:                        Success
+          schema:
+            properties:
+              code:
+                type:                         integer
+                example:                      200
+              views:
+                type:                         array
+                items:
+                  type:                       object
+                  properties:
+                    _id:
+                      type:                   string
+                      example:                '5f7584735f81ae0013928c97'
+                    label:
+                      type:                   string
+                      example:                'Vue1'
+                    position:
+                      type:                   integer
+                      example:                1
+                    cards:
+                      type:                   array
+                      items:
+                        type:                 object
+                        properties:
+                          label:
+                            type:             string
+                            example:          'Réparation érecteur'
+                          type:
+                            type:             string
+                            example:          'machine'
+                          variables:
+                            type:             array
+                            items:
+                              type:           object
+                              properties:
+                                _id:
+                                  type:       string
+                                  example:    BT_MODE_EXCAV
+                                description:
+                                  type:       string
+                                  example:    BT radio/mode excavation
+        '404':
+          description:                        Query error
+          schema:
+            properties:
+              code:
+                type:                         integer
+                example:                      400
+              message:
+                type:                         string
+                example:                      "A error occured"
+#------------------------------------------------------------------------------------#
+  '/users/views/card':
+    get:
+      tags:
+        - Users
+      summary:                        'Get views card of the current user'
+      responses:
+        '200':
+          description:                Success
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              200
+              views:
+                type:                 array
+                items:
+                  type:               object
+                  properties:
+                    _id:
+                      type:           string
+                      example:        '5f7584735f81ae0013928c97'
+                    label:
+                      type:           string
+                      example:        'Vue1'
+                    position:
+                      type:           integer
+                      example:        1
+                    result:
+                      type:           array
+                      items:
+                        type:         object
+                        properties:
+                          default:
+                            type:     integer
+                            example:  0
+                          alert:
+                            type:     integer
+                            example:  0
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              400
+              message:
+                type:                 string
+                example:              "A error occured"
+  ####################################################################################
+  '/views/all':
+    get:
+      tags:
+        - Views
+      summary:                    'Get all views regarding type with pagination.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+        - in:                     query
+          name:                   column
+          type:                   string
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              code:
+                type:             integer
+                example:          200
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5d711d8b2a21ab1627619ad9"
+                        label:
+                          type:       string
+                          example:    "Vue1"
+                        position:
+                          type:       integer
+                          example:    1
+                        cards:
+                          type:       array
+                          items:
+                            properties:
+                              label:
+                                type:     string
+                                example:  'Defaut'
+                              position:
+                                type:     integer
+                                example:  1
+                              type:
+                                type:     string
+                                example:  'default'
+                              variables:
+                                type:     array
+                                items:
+                                  properties:
+                                    _id:
+                                      type:       string
+                                      example:    'ALA_TENSIOACTIF_BAS'
+                                    description:
+                                      type:       string
+                                      example:    'Alarmes'
+                                    position:
+                                      type:       integer
+                                      example:    1
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/views/position':
+    put:
+      tags:
+        - Views
+      summary:                      'Change position of views'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - views
+            properties:
+              views:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f44df442df7880c3c03345b"
+      responses:
+        '200':
+          description:              Success
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:               string
+                example:            'Position updated success'
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            400
+              message:
+                type:               string
+                example:            "A error occured"
+#------------------------------------------------------------------------------------#
+  '/views':
+    post:
+      tags:
+        - Views
+      summary:                      'Adding new view.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+              - cards
+            properties:
+              label:
+                type:               string
+                example:            "View 1"
+              cards:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "Card 1"
+                    type:
+                      type:                   string
+                      example:                "default"
+                    variables:
+                      type:                   array
+                      items:
+                        type:                 object
+                        properties:
+                          -id:
+                            type:             string
+                            example:          "identifer of the variable"
+                          description:
+                            type:             string
+                            example:          "description of the variable"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "New view added"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#------------------------------------------------------------------------------------#
+  '/views/:id':
+    put:
+      tags:
+        - Views
+      summary:                      'Update view.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+              - cards
+            properties:
+              label:
+                type:               string
+                example:            "View 2"
+              cards:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    label:
+                      type:             string
+                      example:          "Card A"
+                    type:
+                      type:                   string
+                      example:                "default"
+                    variables:
+                      type:                   array
+                      items:
+                        type:                 object
+                        properties:
+                          -id:
+                            type:             string
+                            example:          "identifer of the variable"
+                          description:
+                            type:             string
+                            example:          "description of the variable"
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "View updated"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#------------------------------------------------------------------------------------#
+  '/cards':
+    post:
+      tags:
+        - Cards
+      summary:                      'Create a card.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+              - type
+              - column
+            properties:
+              label:
+                type:               string
+                example:            "Card 1"
+              type:
+                type:               string
+                example:            "default"
+              column:
+                type:               integer
+                example:            2
+              variables:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    vId:
+                      type:             string
+                      example:          "RETOUR_CDE_FV5420"
+                    descr:
+                      type:                   string
+                      example:                "Retour commande FV5420"
+                    label:
+                      type:                   string
+                      example:                "label"
+                    values:
+                      type:                   array
+                      items:
+                        type:                 object
+                        properties:
+                          label:
+                            type:             string
+                            example:          "Label for the first value"
+                          value:
+                            type:             string
+                            example:          "True"
+                          color:
+                            type:             string
+                            example:          "#FFFFFF"
+              views:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f44df442df7880c3c03345b"   
+                  
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Card created"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    get:
+      tags:
+        - Cards
+      summary:                      'Get all cards.'
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    _id:
+                      type:             string
+                      example:          "5f7c42720d7d7f34493661d0"
+                    label:
+                      type:             string
+                      example:          "CardName"
+                    type:
+                      type:             string
+                      example:          ["machine", "defaut", "alert"]
+                    position:
+                      type:             integer
+                      example:          1
+                    column:
+                      type:             integer
+                      example:          ["1", "2"]
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#------------------------------------------------------------------------------------#
+  '/cards/position':
+    put:
+      tags:
+        - Cards
+      summary:                      'Change position of cards'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - cards
+            properties:
+              cards:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f7b82b51744f4596c11df1f"
+      responses:
+        '200':
+          description:              Success
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:               string
+                example:            'Position updated success'
+        '404':
+          description:              Query error
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            400
+              message:
+                type:               string
+                example:            "A error occured"
+#------------------------------------------------------------------------------------#
+  '/cards/:id':
+    put:
+      tags:
+        - Cards
+      summary:                      'Update a card.'
+      parameters:
+        - in:                       query
+          name:                     id
+          type:                     string
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - label
+              - type
+              - column
+            properties:
+              label:
+                type:               string
+                example:            "Card 1 update"
+              type:
+                type:               string
+                example:            "default"
+              column:
+                type:               integer
+                example:            1
+              variables:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    vId:
+                      type:             string
+                      example:          "RETOUR_CDE_FV5420"
+                    descr:
+                      type:                   string
+                      example:                "Retour commande FV5420"
+                    label:
+                      type:                   string
+                      example:                "label"
+                    values:
+                      type:                   array
+                      items:
+                        type:                 object
+                        properties:
+                          label:
+                            type:             string
+                            example:          "Label for the first value"
+                          value:
+                            type:             string
+                            example:          "True"
+                          color:
+                            type:             string
+                            example:          "#FFFFFF"
+              views:
+                type:               array
+                items:
+                  type:             string
+                  example:          "5f44df442df7880c3c03345b"   
+                  
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Card has been updated"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  ####################################################################################
+  '/devices':
+    get:
+      tags:
+        - Devices
+      summary:                    'Get all devices regarding type with pagination.'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+        - in:                     query
+          name:                   column
+          type:                   string
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              code:
+                type:             integer
+                example:          200
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "bessacPlugin"
+                        constructionId:
+                          type:       string
+                          example:    "maquetteDemo1"
+                        machineId:
+                          type:       string
+                          example:    "tbmDemo11"
+                        equipmentId:
+                          type:       string
+                          example:    "automateDemo1"
+                        ip:
+                          type:       integer
+                          example:    1.1.1.1
+                        rack:
+                          type:       integer
+                          example:    1
+                        slot:
+                          type:       integer
+                          example:    1
+                        period:
+                          type:       integer
+                          example:    1
+                        createdAt:
+                          type:       string
+                          example:    "2019-12-13T15:17:05.172Z"
+                        updatedAt:
+                          type:       string
+                          example:    "2019-12-13T15:17:05.172Z"
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+
+    post:
+      tags:
+        - Devices
+      summary:                      'Create a new device.'
+      parameters:
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - _id
+              - constructionId
+              - machineId
+              - equipmentId
+              - ip
+              - rack
+              - slot
+              - period
+            properties:
+              _id:
+                type:               string
+                example:            "bessacPlugin"
+              constructionId:
+                type:               string
+                example:            "maquetteDemo1"
+              machineId:
+                type:               string
+                example:            "tbmDemo11"
+              equipmentId:
+                type:               string
+                example:            "automateDemo1"
+              ip:
+                type:               integer
+                example:            1.1.1.1
+              rack:
+                type:               integer
+                example:            1
+              slot:
+                type:               integer
+                example:            1
+              period:
+                type:               integer
+                example:            1
+      
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Device created"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/devices/machineId':
+    get:
+      tags:
+        - Devices
+      summary:                    'Get all equipmentId regarding machineId'
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              data:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    _id:
+                      type:             string
+                      example:          "machineId1"
+                    level:
+                      type:             integer
+                      example:          1
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+
+  #------------------------------------------------------------------------------------#
+  '/devices/:id':
+    put:
+      tags:
+        - Devices
+      summary:                      'Update a device.'
+      parameters:
+        - in:                       query
+          name:                     id
+          type:                     string
+        - in:                       body
+          name:                     body
+          schema:
+            type:                   object
+            required:
+              - _id
+              - constructionId
+              - machineId
+              - equipmentId
+              - ip
+              - rack
+              - slot
+              - period
+            properties:
+              _id:
+                type:               string
+                example:            "bessacPlugin1"
+              constructionId:
+                type:               string
+                example:            "maquetteDemo12"
+              machineId:
+                type:               string
+                example:            "tbmDemo112"
+              equipmentId:
+                type:               string
+                example:            "automateDemo12"
+              ip:
+                type:               integer
+                example:            1.1.1.1
+              rack:
+                type:               integer
+                example:            2
+              slot:
+                type:               integer
+                example:            2
+              period:
+                type:               integer
+                example:            2
+      
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Device updated"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+  '/devices/:id/delete':
+    put:
+      tags:
+        - Devices
+      summary:                      'Delete a device.'
+      parameters:
+        - in:                       query
+          name:                     id
+          type:                     string
+      
+      responses:
+        '200':
+          description:              "Success"
+          schema:
+            properties:
+              code:
+                type:               integer
+                example:            200
+              message:
+                type:               string
+                example:            "Device deleted"
+  
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+  #------------------------------------------------------------------------------------#
+#######################################################################################
+  '/counters':
+    get:
+      tags:
+        - Counters
+      summary:                         'Get all counters'
+      parameters:
+        - in:                     query
+          name:                   page
+          type:                   integer
+          default:                1
+
+        - in:                     query
+          name:                   limit
+          type:                   integer
+          description:            The numbers of items to return
+          default:                25
+
+        - in:                     query
+          name:                   sort
+          type:                   integer
+          description:            define sorting (1 = ASC, -1 = DESC)
+
+        - in:                     query
+          name:                   column
+          type:                   string
+
+        - in:                     query
+          name:                   type
+          type:                   string
+
+        - in:                     query
+          name:                   label
+          type:                   string
+
+      responses:
+        '200':
+          description:            Success
+          schema:
+            properties:
+              code:
+                type:             integer
+                example:          200
+              data:
+                type:              object
+                properties:
+                  count:
+                    type:             integer
+                    example:          1
+                  result:
+                    type:             array
+                    items:
+                      type:           object
+                      properties:
+                        _id:
+                          type:       string
+                          example:    "5fa40144512c17cfc2920852"
+                        label:
+                          type:                   string
+                          example:                "Counter 1"
+                        description:
+                          type:                   string
+                          example:               "Counter oil"
+                        value:
+                          type:                   string
+                          example:               "1234 h"
+                        initOn:
+                          type:                   string
+                          example:                true
+                        type:
+                          type:                   string
+                          example:                variable
+                        unit:
+                          type:                   string
+                          example:                hour
+                        date:
+                          type:                   string
+                          example:                "2020-10-22T20:34:40.464Z"
+                        variable:
+                          type:                   object
+                          properties:
+                            vId:
+                              type:               string
+                              example:            "ALA_AE"
+                            format:
+                              type:               string
+                              example:            "int"
+                        createdAt:
+                          type:                   string
+                          example:                "2020-10-22T20:34:40.464Z"
+                        updateAt:
+                          type:                   string
+                          example:                "2020-10-22T20:34:40.464Z"
+
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    post:
+      tags:
+        - Counters
+      summary:                          'Add a new counter'
+      parameters:
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - description
+              - unit
+              - vId
+            properties:
+              label:
+                type:                   string
+                example:                "Counter 1"
+              description:
+                type:                   string
+                example:                "Description of the counter"
+              initOn:
+                type:                   string
+                example:                true
+              unit:
+                type:                   string
+                example:                hour
+              vId:
+                type:                   string
+                example:                "ALA_AE"
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                200
+              message:
+                type:                   string
+                example:                'Counter created'
+        '404':
+          description:                  Query error
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                400
+              message:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    path:
+                      type:             string
+                      example:          "unit"
+                    message:
+                      type:             string
+                      example:          "should have required property 'unit'"
+  #------------------------------------------------------------------------------------#
+  '/counters/:id':
+    put:
+      tags:
+        - Counters
+      summary:                         'Update a counter'
+      parameters:
+        - in:                     query
+          name:                   id
+          type:                   string
+
+        - in:                           body
+          name:                         body
+          schema:
+            type:                       object
+            required:
+              - label
+              - description
+              - unit
+              - vId
+            properties:
+              label:
+                type:                   string
+                example:                "Counter 1"
+              description:
+                type:                   string
+                example:                "Description of the counter"
+              initOn:
+                type:                   string
+                example:                true
+              unit:
+                type:                   string
+                example:                hour
+              vId:
+                type:                   string
+                example:                "ALA_AE"
+      
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                200
+              message:
+                type:                   string
+                example:                'Counter Updated'
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+    delete:
+      tags:
+        - Counters
+      summary:                          'Delete a counter'
+      parameters:
+        - in:                           query
+          name:                         id
+          type:                         string
+
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                200
+              message:
+                type:                   string
+                example:                'Counter Deleted'
+        '404':
+          description:                  Query error
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                400
+              message:
+                type:                   array
+                items:
+                  type:                 object
+                  properties:
+                    path:
+                      type:             string
+                      example:          "unit"
+                    message:
+                      type:             string
+                      example:          "should have required property 'unit'"
+  #------------------------------------------------------------------------------------#
+  '/counters/:id/reset':
+    put:
+      tags:
+        - Counters
+      summary:                         'Reset a counter'
+      parameters:
+        - in:                     query
+          name:                   id
+          type:                   string
+
+      responses:
+        '200':
+          description:                  Success
+          schema:
+            properties:
+              code:
+                type:                   integer
+                example:                200
+              message:
+                type:                   string
+                example:                'Counter reset'
+        '404':
+          description:                Query error
+          schema:
+            properties:
+              code:
+                type:                 integer
+                example:              404
+              data:
+                type:                 object
+                properties:
+                  message:
+                    type:             string
+                    example:          "failed"
+                  reason:
+                    type:             string
+                    example:          "error query"
+#######################################################################################
+responses:
+  200k:
+    description:                  Successfull
+  201Created:
+    description:                  Created
+  202Accepted:
+    description:                  Accepted
+  203NonAuthoritativeInformation:
+    description:                  Non-Authoritative Information
+  204NoContent:
+    description:                  No Content
+  400BadRequest:
+    description:                  Bad Request
+  401Unauthorized:
+    description:                  Unauthorized
+  403Forbidden:
+    description:                  Forbidden
+  404NotFound:
+    description:                  Not Found
+  409Conflict:
+    description:                  Conflict
+  500InternalServer:
+    description:                  Internal Server Error
+  501NotImplemented:
+    description:                  Not Implemented
+  502BadGateway:
+    description:                  Bad Gateway
+  503ServiceUnavailable:
+    description:                  Service Unavailable
+  504GatewayTimeout:
+    description:                  Gateway Timeout

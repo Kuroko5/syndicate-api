@@ -1,2 +1,2 @@
 # syndicate-api
-syndicate api
+Syndicate api

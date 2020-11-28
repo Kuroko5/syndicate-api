@@ -1,0 +1,82 @@
+{
+    "$id": "card.schema.json",
+    "definitions": {
+      "card": {
+        "type": "object",
+        "title": "card schema",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "The identifier of the card"
+          },
+          "label": {
+            "type": "string",
+            "title": "The label of the card"
+          },
+          "type": {
+            "type": "string",
+            "title": "The type of the card"
+          },
+          "position": {
+            "type": "integer",
+            "title": "The position of the card"
+          },
+          "column": {
+            "type": "integer",
+            "title": "The number of colums to display"
+          },
+          "variables": {
+            "type": "array",
+            "title": "The list of variables",
+            "items": {
+              "type": "object",
+              "title": "A variable",
+              "properties": {
+                "vId": {
+                "type": "string",
+                "title": "The identifier of the variable"
+                  },
+                "descr": {
+                  "type": "string",
+                  "title": "The description of the variable"
+                },
+                "label": {
+                  "type": "string",
+                  "title": "The label of the variable"
+                },
+                "values": {
+                "type": "array",
+                "title": "List of permissible values ​​for a variable",
+                  "items": {
+                    "type": "object",
+                    "title": "The value",
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "title": "Label for each value"
+                          },
+                      "value": {
+                        "type": "string",
+                        "title": "Value of the variable regarding label's value."
+                      },
+                      "color": {
+                        "type": "integer",
+                        "title": "Color for the value"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "views": {
+            "type": "array",
+            "title": "List of the view ids",
+            "description": "List of all views identifier"
+        },
+        "required": ["_id", "label", "type", "column"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

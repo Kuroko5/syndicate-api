@@ -1,0 +1,62 @@
+{
+  "$id": "sample.schema.json",
+  "definitions": {
+    "sample": {
+      "type": "object",
+      "title": "sample schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "sample id (db id)"
+        },
+        "vId": {
+          "type": "string",
+          "title": "variable name"
+        },
+        "dId": {
+          "type": "string",
+          "title": "device ID"
+        },
+        "tbmrn": {
+          "type": "string",
+          "title": "the Tunnel Boring Machine Ressource Name in the format trn::_construction_id_::_tbm_id_::_automate_id_::block_id",
+          "pattern": "^tbmrn(::([\\d\\w]+)){4}$"
+        },
+        "val": {
+          "type": ["string", "boolean", "number"],
+          "title": "sample value"
+        },
+        "unit": {
+          "type": "string",
+          "title": "sample unit"
+        },
+        "d": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date and time of the measruement ISO8601 format.(UTC)"
+        },
+        "t": {
+          "type": "string",
+          "title": "Variable type e.g : default, alert or machine",
+          "enume": ["alert", "default", "machine"]
+        },
+        "c": {
+          "type": "string",
+          "title": "sample category"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the sample was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the sample was updated"
+        }
+      },
+      "required": ["vId", "tbmrn", "dId", "val", "date"],
+      "additionalProperties": false
+    }
+  }
+}

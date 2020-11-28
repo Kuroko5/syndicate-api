@@ -1,0 +1,30 @@
+{
+    "$id": "permission.schema.json",
+    "definitions": {
+      "permission": {
+        "type": "object",
+        "title": "permission schema",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "The identifier of the permission"
+          },
+          "label": {
+            "type": "string",
+            "title": "The label of the permission"
+          },
+          "code": {
+            "type": "string",
+            "title": "The code of the permission"
+          },
+          "category": {
+            "type": "string",
+            "title": "The category of the permission"
+          }
+        },
+        "required": ["_id", "label", "code", "category"],
+        "additionalProperties": false
+      }
+    }
+}
+  

@@ -1,0 +1,69 @@
+{
+  "$id": "user.schema.json",
+  "definitions": {
+    "user": {
+      "type": "object",
+      "title": "user schema",
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "user identifier"
+        },
+        "password": {
+          "type": "string",
+          "title": "hashed password"
+        },
+        "profiles": {
+          "type": "array",
+          "title": "list of user's profiles",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "title": "profile-identifier"
+              },
+              "label": {
+                "type": "string",
+                "title": "Label of the profile"
+              }
+            }
+          }
+        },
+        "views": {
+          "type": "array",
+          "title": "list of user's views",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "title": "view-identifier"
+              },
+              "label": {
+                "type": "string",
+                "title": "Label of the view"
+              },
+              "position": {
+                "type": "integer",
+                "title": "Position of the view"
+              }
+            }
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the user has been created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the user information were updated"
+        }
+      },
+      "required": ["username", "password", "profiles"],
+      "additionalProperties": false
+    }
+  }
+}

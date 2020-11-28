@@ -1,0 +1,109 @@
+{
+  "$id": "document.schema.json",
+  "definitions": {
+    "document": {
+      "type": "object",
+      "title": "document schema",
+      "properties": {
+        "title": {
+          "type": "string",
+          "title": "The title of the Schema",
+          "examples": ["The title of the Schema"],
+          "pattern": "^(.*)$"
+        },
+        "documentType": {
+          "type": "object",
+          "title": "The documentType schema",
+          "description": "All properties of the documentType object.",
+          "default": {},
+          "properties": {
+              "id": {
+                  "type": "string",
+                  "title": "The id schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "5f1959a97fb6c529c8bf3541"
+                  ]
+              },
+              "label": {
+                  "type": "string",
+                  "title": "The label schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "Schéma technique"
+                  ]
+              }
+          }
+        },
+        "documentCategory": {
+          "type": "object",
+          "title": "The documentType schema",
+          "description": "All properties of the document Category object.",
+          "properties": {
+              "id": {
+                  "type": "string",
+                  "title": "The id schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "5f1959a97fb6c529c8bf3541"
+                  ]
+              },
+              "label": {
+                  "type": "string",
+                  "title": "The label schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "examples": [
+                      "Autre",
+                      "Démo"
+                  ]
+              },
+              "isDefault": {
+                "type": "boolean",
+                "title": "The isDefault schema",
+                "description": "The value of category default.",
+                "examples": ["true"]
+            }
+          }
+        },
+        "operator": {
+          "type": "string",
+          "title": "The Operator Schema",
+          "examples": ["name.surname"],
+          "pattern": "^[\\D]+\\.{1}[\\D]+"
+        },
+        "fileType": {
+          "type": "string",
+          "title": "The type of the file",
+          "examples": ["jpg"],
+          "pattern": "^(.*)$"
+        },
+        "fileName": {
+          "type": "string",
+          "title": "The name of the file",
+          "examples": ["examples.jpg"],
+          "pattern": "^(.*)$"
+        },
+        "file": {
+          "title": "The binary file"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the user has been created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "date-time representing the moment the user information were updated"
+        }
+      },
+      "required": [
+        "title",
+        "documentType",
+        "documentCategory",
+        "operator"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

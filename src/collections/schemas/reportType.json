@@ -1,0 +1,28 @@
+{
+    "$id": "reportType.schema.json",
+    "definitions": {
+      "reportType": {
+        "type": "object",
+        "title": "reportType schema",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "Identifier of the reportType"
+          },
+          "label": {
+            "type": "string",
+            "title": "The label of the reportType",
+            "examples": ["Manual"]
+          },
+          "language": {
+            "type": "string",
+            "title": "The language of the reportType",
+            "examples": ["fr-fr"]
+          }
+        },
+        "required": ["id", "label"],
+        "additionalProperties": false
+      }
+    }
+  }
+  

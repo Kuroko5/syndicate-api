@@ -1,0 +1,50 @@
+{
+  "$id": "reportConfig.schema.json",
+  "definitions": {
+    "reportConfig": {
+      "type": "object",
+      "title": "reportConfig schema",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "title": "The identifier of the reportConfig"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the reportConfig",
+          "examples": ["Debut réél"]
+        },
+        "type": {
+          "type": "string",
+          "title": "The type of the reportConfig",
+          "enum": ["variable", "info", "text"]
+        },
+        "value": {
+          "type": "string",
+          "title": "The value of the reportConfig",
+          "examples": ["11/05/2020"]
+        },
+        "vId": {
+          "type": "string",
+          "title": "The id of the variable",
+          "examples": ["ANGLE_ERECTEUR"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The date-time representing the moment the reportConfig was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "The date-time representing the moment the reportConfig was updated"
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
