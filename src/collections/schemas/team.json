@@ -1,0 +1,22 @@
+{
+    "$id": "team.schema.json",
+    "definitions": {
+      "team": {
+        "type": "object",
+        "title": "team schema",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "The identifier of the team"
+          },
+          "label": {
+            "type": "string",
+            "title": "The label of the team"
+          }
+        },
+        "required": ["_id", "label"],
+        "additionalProperties": false
+      }
+    }
+  }
+}
