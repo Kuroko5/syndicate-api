@@ -15,6 +15,22 @@ const getPermissions = async (req, res) => {
   return res.status(200).send({ code: 200, data: getAllPermissions });
 };
 
+/**
+ * Get all permissions.
+ * @param {*} req
+ * @param {*} res
+ */
+const createPermission = async (req, res) => {
+  const perm = req.body;
+
+  const result = await permissionsService.create(perm);
+
+  if (result instanceof Error) {
+    return res.status(400).send({ code: 400, message: result.message });
+  }
+  return res.status(200).send({ code: 200, data: result });
+};
 module.exports = {
-  getPermissions
+  getPermissions,
+  createPermission
 };

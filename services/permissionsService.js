@@ -19,5 +19,19 @@ class Permission {
 
     return getAllPermissions;
   };
+
+  static async create (permission) {
+    // Retrieve instance of Mongo
+    const db = await Mongo.instance().getDb();
+
+    const result = await db.collection(collections.PERMISSION_COLL)
+      .insertOne({...permission});
+
+    if (!result) {
+      return new Error('Can not found permissions');
+    }
+
+    return result;
+  };
 }
 module.exports = Permission;
