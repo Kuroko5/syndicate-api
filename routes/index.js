@@ -16,6 +16,7 @@ const reportTypesRoute = require('./reportTypes');
 const cardsRoute = require('./cards');
 const devicesRoute = require('./devices');
 const countersRoute = require('./counters');
+const teamsRoute = require('./teams');
 /**
  * Dispath the differents routes.
  */
@@ -36,5 +37,6 @@ api.use('/cards', cardsRoute);
 api.use('/reportTypes', reportTypesRoute);
 api.use('/devices', devicesRoute);
 api.use('/counters', countersRoute);
+api.use('/teams', teamsRoute);
 
 module.exports = api;

@@ -1,4 +1,5 @@
 const { Mongo } = require('./app/class/mongo');
+const config = require('./environnement/configuration.json')
 const Document = require('./services/documentsService');
 const Sample = require('./services/samplesService');
 const Variable = require('./services/variablesService');
@@ -16,7 +17,7 @@ async function main () {
   const mongodb = Mongo.instance();
   await Promise.all([
     mongodb.connectAdvanced(
-      process.env.MONGO_URI, {
+      config.DATABASE.URI || process.env.MONGO_URI, {
         useUnifiedTopology: true,
         useNewUrlParser: true
       },

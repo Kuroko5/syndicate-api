@@ -26,7 +26,7 @@ app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api/v0', routes);
+app.use('/api', routes);
 
 /**
  * Middlewares to catch error.

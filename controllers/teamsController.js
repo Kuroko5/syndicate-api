@@ -35,19 +35,25 @@ const createTeam = async (req, res) => {
  * @param {*} res
  */
 const getAllTeams = async (req, res) => {
-  // Decode the token to get the operator.
-  const token = req.headers.authorization;
-  const decoded = jwtDecode(token);
-  const username = decoded.username;
+  var request = require("request");
+  const result = [];
+  var options = {
+    method: 'GET',
+    url: 'https://v3.football.api-sports.io/teams',
+    qs: {league: '39', season: '2020'},
+    headers: {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': '01f8ab22246f26612dcff7958fb0e51a'
+    }
+  };
 
-  // Get All Teams.
-  const teams = await teamsService.getTeams(username);
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
 
-  if (teams instanceof Error) {
-    return res.status(400).send({ code: 400, message: teams.message });
-  }
+    console.log(body);
+    return res.status(200).send({ code: 200, data: JSON.parse(body)})
 
-  return res.status(200).send({ code: 200, data: teams });
+  });
 };
 
 module.exports = {

@@ -1,0 +1,32 @@
+{
+    "APPLICATION": {
+        "PORT": 3001
+    },
+    "URLS": {
+        "API": "http://",
+        "API_EXTERNAL_URL": "http://",
+        "CLIENT": "http://",
+        "CLIENT_EXTERNAL_URL": "http://"
+    },
+    "DATABASE": {
+      "URI":"mongodb://127.0.0.1:27017/",
+      "AUTH_MECHANISM": "SCRAM-SHA-1",
+        "AUTH_SOURCE": "syndicate",
+        "REPLICA_SET": "",
+        "USERNAME": "admin",
+        "PASSWORD": "admin",
+        "NAME": "syndicate",
+        "SSL": false,
+        "CA": "",
+        "INSTANCES": [
+            {
+                "HOST": "localhost",
+                "PORT": 27017
+            }
+        ]
+    },
+    "JWT": {
+        "ISSUER": "SYNDICATE",
+        "EXPIRES_IN": 604800
+    }
+}

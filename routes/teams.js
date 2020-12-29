@@ -15,14 +15,14 @@ api
       checkRight.rightMiddleware(['ADMIN_TEAMS_CREATE'], req, res, next);
     },
     passport.authenticate('jwt', { session: false }),
-    cardsController.createTeam
+    teamsController.createTeam
   )
   .get(
-    (req, res, next) => {
-      checkRight.rightMiddleware(['TEAMS', 'ADMIN_TEAMS'], req, res, next);
-    },
+    // (req, res, next) => {
+    //   checkRight.rightMiddleware(['TEAMS', 'ADMIN_TEAMS'], req, res, next);
+    // },
     passport.authenticate('jwt', { session: false }),
-    cardsController.getAllTeams
+    teamsController.getAllTeams
   );
 
 
