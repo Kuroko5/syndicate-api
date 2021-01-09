@@ -73,5 +73,5 @@ const getSelectedConditions = async (req, res, next) => {
 module.exports = {
   getCurrentsConditions,
   getOneCondition,
-  getSelectedConditions
+  getSelectedConditions,
 };

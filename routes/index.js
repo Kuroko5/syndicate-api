@@ -1,4 +1,5 @@
 const express = require('express');
+
 const api = express.Router();
 const samplesRoute = require('./samples');
 const reportRoute = require('./reports');
@@ -17,6 +18,7 @@ const cardsRoute = require('./cards');
 const devicesRoute = require('./devices');
 const countersRoute = require('./counters');
 const teamsRoute = require('./teams');
+
 /**
  * Dispath the differents routes.
  */

@@ -1,5 +1,6 @@
 require('dotenv-safe').config();
 const express = require('express');
+
 const api = express.Router({ mergeParams: true });
 const passport = require('passport');
 const profileController = require('../controllers/profileController');
@@ -15,7 +16,8 @@ api
       checkRight.rightMiddleware(['ADMIN_PROFILES_CREATE'], req, res, next);
     },
     passport.authenticate('jwt', { session: false }),
-    profileController.createProfile);
+    profileController.createProfile,
+  );
 
 /**
  * Get all profiles.
@@ -36,7 +38,8 @@ api.put(
     checkRight.rightMiddleware(['ADMIN_PROFILES_UPDATE'], req, res, next);
   },
   passport.authenticate('jwt', { session: false }),
-  profileController.updateProfile);
+  profileController.updateProfile,
+);
 
 /**
  * Delete a profile.
@@ -48,6 +51,7 @@ api
       checkRight.rightMiddleware(['ADMIN_PROFILES_DELETE'], req, res, next);
     },
     passport.authenticate('jwt', { session: false }),
-    profileController.deleteProfile);
+    profileController.deleteProfile,
+  );
 
 module.exports = api;

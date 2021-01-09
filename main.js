@@ -1,5 +1,5 @@
 const { Mongo } = require('./app/class/mongo');
-const config = require('./environnement/configuration.json')
+const config = require('./environnement/configuration.json');
 const Document = require('./services/documentsService');
 const Sample = require('./services/samplesService');
 const Variable = require('./services/variablesService');
@@ -13,15 +13,15 @@ const Card = require('./services/cardsService');
 const Device = require('./services/devicesService');
 const Counter = require('./services/countersService');
 
-async function main () {
+async function main() {
   const mongodb = Mongo.instance();
   await Promise.all([
     mongodb.connectAdvanced(
-      config.DATABASE.URI || process.env.MONGO_URI, {
+      config.DATABASE.URI || process.env.MONGO_URI, {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
       },
-      null
+      null,
     ),
     Sample.init(),
     Document.init(),
@@ -33,7 +33,7 @@ async function main () {
     Station.init(),
     ReportType.init(),
     Card.init(),
-    Device.init()
+    Device.init(),
   ]);
 
   Counter.init();
